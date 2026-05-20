@@ -4,6 +4,26 @@ Este diretório contém toda a documentação técnica e de planejamento do proj
 
 ## 📄 Documentos Disponíveis
 
+### 0. [STATUS_ATUAL.md](./STATUS_ATUAL.md) ⭐ NOVO
+
+**Propósito**: Visão geral do status de evolução da aplicação
+
+**Conteúdo**:
+
+- Resumo executivo do projeto
+- Progresso por fase (Fase 0-6)
+- O que está implementado (estrutura, funcionalidades, rotas)
+- Pendências críticas e bloqueadores
+- Métricas do projeto (código, tarefas, tempo)
+- Roadmap detalhado por Sprint
+- Checklist de validação
+
+**Quando consultar**: Para entender o status atual, progresso e próximos passos
+
+**Status**: ✅ Atualizado em 2026-05-20
+
+---
+
 ### 1. [DECISOES_ARQUITETURAIS.md](./DECISOES_ARQUITETURAIS.md)
 
 **Propósito**: Registrar todas as decisões técnicas e arquiteturais do projeto
@@ -122,11 +142,12 @@ psql -h db.xxx.supabase.co -U postgres -d postgres -f SUPABASE_SCHEMA.sql
 
 ### Para Novos Desenvolvedores
 
-1. Leia `DECISOES_ARQUITETURAIS.md` para entender o contexto
-2. Execute `SUPABASE_SCHEMA.sql` no Supabase
-3. Siga `PLANO_IMPLEMENTACAO_SUPABASE.md` fase por fase
-4. Consulte `SDD_ESPECIFICACOES.md` ao implementar cada RF
-5. Crie as tarefas no GitHub Projects usando `TAREFAS_GITHUB_SUMMARY.md`
+1. Leia `STATUS_ATUAL.md` para entender o status atual do projeto
+2. Leia `DECISOES_ARQUITETURAIS.md` para entender o contexto
+3. Execute `SUPABASE_SCHEMA.sql` no Supabase
+4. Siga `PLANO_IMPLEMENTACAO_SUPABASE.md` fase por fase
+5. Consulte `SDD_ESPECIFICACOES.md` ao implementar cada RF
+6. Crie as tarefas no GitHub Projects usando `TAREFAS_GITHUB_SUMMARY.md`
 
 ### Para Implementar uma Feature
 
@@ -149,11 +170,12 @@ psql -h db.xxx.supabase.co -U postgres -d postgres -f SUPABASE_SCHEMA.sql
 
 | Documento                       | Status      | Última Atualização | Versão |
 | ------------------------------- | ----------- | ------------------ | ------ |
+| STATUS_ATUAL.md                 | ✅ Atualizado | 2026-05-20         | 1.1.0  |
 | DECISOES_ARQUITETURAIS.md       | ✅ Completo | 2025-01-XX         | 1.0.0  |
 | SUPABASE_SCHEMA.sql             | ✅ Completo | 2025-01-XX         | 1.0.0  |
 | SDD_ESPECIFICACOES.md           | ✅ Completo | 2025-01-XX         | 1.0.0  |
 | PLANO_IMPLEMENTACAO_SUPABASE.md | ✅ Completo | 2025-01-XX         | 1.0.0  |
-| TAREFAS_GITHUB_SUMMARY.md       | ✅ Completo | 2025-01-XX         | 1.0.0  |
+| TAREFAS_GITHUB_SUMMARY.md       | ✅ Completo | 2026-01-02         | 1.0.0  |
 
 ---
 
