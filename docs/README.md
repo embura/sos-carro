@@ -175,4 +175,4 @@ Consulte a documentação na ordem recomendada ou abra uma issue no repositório
 ---
 
 _Documentação mantida pela equipe SOS Carros_
-_Última revisão: 2025-01-XX_
+_Última revisão: 2026-05-20
