@@ -1,5 +1,86 @@
-(docs/CONFIGURACAO_DATABASE_FASE5.md, docs/QUICK_START_DATABASE.md, docs/RESPOSTA_DATABASE_FASE5.md, docs/README.md, docs/SUPABASE_SCHEMA.sql) - These are all documentation and SQL files, which are source/config files that should not be ignored.
+# Dependencies
+node_modules/
 
-Since the changes only include markdown (.md) and SQL (.sql) files, which are source/documentation files, no files need to be added to .gitignore.
+# Build artifacts
+dist/
+build/
+*.js
+*.mjs
+*.cjs
+*.ts
+*.mts
+*.cts
+*.jsx
+*.tsx
+*.css
+*.scss
+*.sass
+*.less
+*.html
+*.json
 
-(empty - no output)
+# Environment variables
+.env
+.env.local
+.env.*
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+pip-log.txt
+pip-selfcheck.json
+
+# Node.js specific
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled binary files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Archives
+*.zip
+*.tar.gz
+*.tar.bz2
+*.rar
+*.7z
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Sensitive files
+config/secrets.*
+credentials.json
