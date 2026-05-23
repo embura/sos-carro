@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SejaPrestadorRouteImport } from './routes/seja-prestador'
+import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
@@ -21,6 +22,11 @@ import { Route as PrestadorIdRouteImport } from './routes/prestador.$id'
 const SejaPrestadorRoute = SejaPrestadorRouteImport.update({
   id: '/seja-prestador',
   path: '/seja-prestador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecuperarSenhaRoute = RecuperarSenhaRouteImport.update({
+  id: '/recuperar-senha',
+  path: '/recuperar-senha',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EntrarRoute = EntrarRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
   '/entrar': typeof EntrarRoute
+  '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
   '/prestador/$id': typeof PrestadorIdRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
   '/entrar': typeof EntrarRoute
+  '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
   '/prestador/$id': typeof PrestadorIdRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
   '/entrar': typeof EntrarRoute
+  '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
   '/prestador/$id': typeof PrestadorIdRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/dashboard'
     | '/entrar'
+    | '/recuperar-senha'
     | '/seja-prestador'
     | '/prestador/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/dashboard'
     | '/entrar'
+    | '/recuperar-senha'
     | '/seja-prestador'
     | '/prestador/$id'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/dashboard'
     | '/entrar'
+    | '/recuperar-senha'
     | '/seja-prestador'
     | '/prestador/$id'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRoute
   EntrarRoute: typeof EntrarRoute
+  RecuperarSenhaRoute: typeof RecuperarSenhaRoute
   SejaPrestadorRoute: typeof SejaPrestadorRoute
   PrestadorIdRoute: typeof PrestadorIdRoute
 }
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/seja-prestador'
       fullPath: '/seja-prestador'
       preLoaderRoute: typeof SejaPrestadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recuperar-senha': {
+      id: '/recuperar-senha'
+      path: '/recuperar-senha'
+      fullPath: '/recuperar-senha'
+      preLoaderRoute: typeof RecuperarSenhaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/entrar': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRoute,
   EntrarRoute: EntrarRoute,
+  RecuperarSenhaRoute: RecuperarSenhaRoute,
   SejaPrestadorRoute: SejaPrestadorRoute,
   PrestadorIdRoute: PrestadorIdRoute,
 }
