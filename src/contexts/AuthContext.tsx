@@ -49,16 +49,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         if (error) throw error;
         setProfile(data);
         
-        // Redirecionar baseado no tipo de usuário após carregar o perfil
-        // Isso é útil quando o usuário já está logado e recarrega a página
-        const currentPath = window.location.pathname;
-        if (currentPath === '/' || currentPath === '/entrar' || currentPath === '/cadastro') {
-          if (data.user_type === 'provider') {
-            window.location.href = '/dashboard-parceiro';
-          } else if (data.user_type === 'customer') {
-            window.location.href = '/dashboard-cliente';
-          }
-        }
+        // NOTA: Redirecionamento automático foi removido.
+        // O redirect para o dashboard deve ser feito explicitamente após o login,
+        // não automaticamente ao carregar a página ou recarregar.
       } catch (error) {
         console.error('Error fetching profile:', error);
         setProfile(null);
