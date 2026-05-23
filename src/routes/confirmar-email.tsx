@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { supabase } from '@/lib/supabase';
 
 export const Route = createFileRoute('/confirmar-email')({
@@ -9,7 +9,6 @@ export const Route = createFileRoute('/confirmar-email')({
 function ConfirmarEmailComponent() {
   const [status, setStatus] = useState<'verificando' | 'sucesso' | 'erro'>('verificando');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const verifyEmail = async () => {
@@ -35,9 +34,9 @@ function ConfirmarEmailComponent() {
 
           setTimeout(() => {
             if (profile?.user_type === 'provider') {
-              navigate({ to: '/dashboard-parceiro' });
+              window.location.href = '/sos-carro/dashboard-parceiro';
             } else {
-              navigate({ to: '/dashboard-cliente' });
+              window.location.href = '/sos-carro/dashboard-cliente';
             }
           }, 2000);
         } else {
@@ -45,7 +44,7 @@ function ConfirmarEmailComponent() {
           setStatus('sucesso');
           setMessage('Email confirmado! Faça login para continuar.');
           setTimeout(() => {
-            navigate({ to: '/entrar' });
+            window.location.href = '/sos-carro/entrar';
           }, 2000);
         }
       } catch (error: any) {
@@ -56,7 +55,7 @@ function ConfirmarEmailComponent() {
     };
 
     verifyEmail();
-  }, [navigate]);
+  }, []);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">

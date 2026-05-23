@@ -1,8 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 import type { Profile, UserType } from '@/lib/supabase';
-import { useRouter } from '@tanstack/react-router';
 
 interface AuthContextType {
   user: User | null;
@@ -14,6 +13,7 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ error: AuthError | null }>;
   updateProfile: (data: Partial<Profile>) => Promise<{ error: any }>;
+  navigateToDashboard: (userType: UserType) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,7 +23,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  
+  // Callback para navegação - será chamado pelos componentes quando necessário
+  const navigateToDashboard = useCallback((userType: UserType) => {
+    // A navegação real será feita pelo componente que chamou
+    // Este método é apenas um placeholder para futura implementação
+    console.log('Navigating to dashboard for:', userType);
+  }, []);
 
   // Fetch profile when user changes
   useEffect(() => {
@@ -48,9 +54,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const currentPath = window.location.pathname;
         if (currentPath === '/' || currentPath === '/entrar' || currentPath === '/cadastro') {
           if (data.user_type === 'provider') {
-            router.navigate({ to: '/dashboard-parceiro' });
+            window.location.href = '/sos-carro/dashboard-parceiro';
           } else if (data.user_type === 'customer') {
-            router.navigate({ to: '/dashboard-cliente' });
+            window.location.href = '/sos-carro/dashboard-cliente';
           }
         }
       } catch (error) {
@@ -60,7 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     fetchProfile();
-  }, [user, router]);
+  }, [user]);
 
   useEffect(() => {
     // Get initial session
@@ -141,6 +147,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     signOut,
     resetPassword,
     updateProfile,
+    navigateToDashboard,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

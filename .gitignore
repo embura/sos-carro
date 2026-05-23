@@ -2,62 +2,36 @@
 # Dependencies
 node_modules/
 
-# Build artifacts
+# Build outputs
 dist/
 build/
-*.js.map
-*.tsbuildinfo
+coverage/
+htmlcov/
 
 # Environment variables
 .env
 .env.local
-*.env.*
+.env.*
 
-# Logs
-*.log
-
-# Coverage reports
-coverage/
-.nyc_output/
-*.lcov
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Python artifacts (if any Python files exist in project)
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-*.so
 
-# Virtual environments
-venv/
-.venv/
-.env/
-
-# Testing
-.mypy_cache/
-.pytest_cache/
-.coverage
-htmlcov/
-
-# Node.js
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Logs
+*.log
 
 # Temporary files
 *.tmp
-*.temp
+*.swp
+*~
+
+# OS generated files
 .DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
 ```

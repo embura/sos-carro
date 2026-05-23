@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -20,7 +20,6 @@ export const Route = createFileRoute("/entrar")({
 });
 
 function Entrar() {
-  const navigate = useNavigate();
   const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,8 +36,8 @@ function Entrar() {
       if (error) {
         setError(error.message);
       } else {
-        // O redirecionamento será tratado pelo AuthContext ou ProtectedRoute
-        // baseado no tipo de usuário
+        // O redirecionamento será tratado pelo AuthContext via window.location.href
+        // baseado no tipo de usuário após carregar o perfil
       }
     } catch (err) {
       setError("Ocorreu um erro inesperado. Tente novamente.");
