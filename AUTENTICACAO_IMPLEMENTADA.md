@@ -187,13 +187,13 @@ function MinhaRotaPrivada() {
 ### 1. Testar Cadastro
 ```bash
 npm run dev
-# Acesse http://localhost:5173/sos-carro/cadastro
+# Acesse http://localhost:5173/cadastro
 # Preencha os dados e crie uma conta
 ```
 
 ### 2. Testar Login
 ```bash
-# Acesse http://localhost:5173/sos-carro/entrar
+# Acesse http://localhost:5173/entrar
 # Use as credenciais criadas
 ```
 
