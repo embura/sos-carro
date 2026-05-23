@@ -168,7 +168,7 @@ psql -h db.xxx.supabase.co -U postgres -d postgres -f SUPABASE_SCHEMA.sql
 | Documento                       | Status      | Última Atualização | Versão |
 | ------------------------------- | ----------- | ------------------ | ------ |
 | DECISOES_ARQUITETURAIS.md       | ✅ Completo | Jan 2025           | 1.0.0  |
-| SUPABASE_SCHEMA.sql             | ✅ Completo | Jan 2025           | 1.0.0  |
+| SUPABASE_SCHEMA.sql             | ✅ Completo | Mai 2025           | 1.1.0  |
 | SDD_ESPECIFICACOES.md           | ✅ Completo | Jan 2025           | 1.0.0  |
 | PLANO_IMPLEMENTACAO_SUPABASE.md | ✅ Completo | Jan 2025           | 1.0.0  |
 | TAREFAS_GITHUB_SUMMARY.md       | ✅ Completo | Jan 2025           | 1.0.0  |
@@ -176,7 +176,27 @@ psql -h db.xxx.supabase.co -U postgres -d postgres -f SUPABASE_SCHEMA.sql
 | FASE4_CONCLUIDA.md              | ✅ Completo | Mai 2025           | 1.0.0  |
 | IMPLEMENTACAO_FASE4.md          | ✅ Completo | Mai 2025           | 1.0.0  |
 | IMPLEMENTACAO_FASE5.md          | ✅ Completo | Mai 2025           | 1.0.0  |
+| CONFIGURACAO_DATABASE_FASE5.md  | ✅ Completo | Mai 2025           | 1.0.0  |
+| QUICK_START_DATABASE.md         | ✅ Completo | Mai 2025           | 1.0.0  |
 | SUPABASE_SETUP_SUMMARY.md       | ✅ Completo | Jan 2025           | 1.0.0  |
+
+---
+
+## 🆕 Novos Documentos (Fase 5)
+
+### [CONFIGURACAO_DATABASE_FASE5.md](./CONFIGURACAO_DATABASE_FASE5.md)
+**Guia completo de configuração do banco de dados para Fase 5**
+- Estrutura detalhada das tabelas `bookings` e `notifications`
+- Como habilitar Realtime no Supabase
+- Scripts de verificação e troubleshooting
+- Testes de integração
+
+### [QUICK_START_DATABASE.md](./QUICK_START_DATABASE.md)
+**Configuração rápida em 3 passos (7 minutos)**
+- Execute o schema completo
+- Habilite Realtime
+- Verifique a configuração
+- Pronto para usar os hooks!
 
 ---
 
