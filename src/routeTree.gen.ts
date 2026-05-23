@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SejaPrestadorRouteImport } from './routes/seja-prestador'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as DashboardParceiroRouteImport } from './routes/dashboard-parceiro'
+import { Route as DashboardClienteRouteImport } from './routes/dashboard-cliente'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as CadastroRouteImport } from './routes/cadastro'
@@ -32,6 +34,16 @@ const RecuperarSenhaRoute = RecuperarSenhaRouteImport.update({
 const EntrarRoute = EntrarRouteImport.update({
   id: '/entrar',
   path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardParceiroRoute = DashboardParceiroRouteImport.update({
+  id: '/dashboard-parceiro',
+  path: '/dashboard-parceiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardClienteRoute = DashboardClienteRouteImport.update({
+  id: '/dashboard-cliente',
+  path: '/dashboard-cliente',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -71,6 +83,8 @@ export interface FileRoutesByFullPath {
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
+  '/dashboard-cliente': typeof DashboardClienteRoute
+  '/dashboard-parceiro': typeof DashboardParceiroRoute
   '/entrar': typeof EntrarRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
@@ -82,6 +96,8 @@ export interface FileRoutesByTo {
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
+  '/dashboard-cliente': typeof DashboardClienteRoute
+  '/dashboard-parceiro': typeof DashboardParceiroRoute
   '/entrar': typeof EntrarRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
@@ -94,6 +110,8 @@ export interface FileRoutesById {
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRoute
+  '/dashboard-cliente': typeof DashboardClienteRoute
+  '/dashboard-parceiro': typeof DashboardParceiroRoute
   '/entrar': typeof EntrarRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
@@ -107,6 +125,8 @@ export interface FileRouteTypes {
     | '/cadastro'
     | '/como-funciona'
     | '/dashboard'
+    | '/dashboard-cliente'
+    | '/dashboard-parceiro'
     | '/entrar'
     | '/recuperar-senha'
     | '/seja-prestador'
@@ -118,6 +138,8 @@ export interface FileRouteTypes {
     | '/cadastro'
     | '/como-funciona'
     | '/dashboard'
+    | '/dashboard-cliente'
+    | '/dashboard-parceiro'
     | '/entrar'
     | '/recuperar-senha'
     | '/seja-prestador'
@@ -129,6 +151,8 @@ export interface FileRouteTypes {
     | '/cadastro'
     | '/como-funciona'
     | '/dashboard'
+    | '/dashboard-cliente'
+    | '/dashboard-parceiro'
     | '/entrar'
     | '/recuperar-senha'
     | '/seja-prestador'
@@ -141,6 +165,8 @@ export interface RootRouteChildren {
   CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRoute
+  DashboardClienteRoute: typeof DashboardClienteRoute
+  DashboardParceiroRoute: typeof DashboardParceiroRoute
   EntrarRoute: typeof EntrarRoute
   RecuperarSenhaRoute: typeof RecuperarSenhaRoute
   SejaPrestadorRoute: typeof SejaPrestadorRoute
@@ -168,6 +194,20 @@ declare module '@tanstack/react-router' {
       path: '/entrar'
       fullPath: '/entrar'
       preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard-parceiro': {
+      id: '/dashboard-parceiro'
+      path: '/dashboard-parceiro'
+      fullPath: '/dashboard-parceiro'
+      preLoaderRoute: typeof DashboardParceiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard-cliente': {
+      id: '/dashboard-cliente'
+      path: '/dashboard-cliente'
+      fullPath: '/dashboard-cliente'
+      preLoaderRoute: typeof DashboardClienteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -221,6 +261,8 @@ const rootRouteChildren: RootRouteChildren = {
   CadastroRoute: CadastroRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRoute,
+  DashboardClienteRoute: DashboardClienteRoute,
+  DashboardParceiroRoute: DashboardParceiroRoute,
   EntrarRoute: EntrarRoute,
   RecuperarSenhaRoute: RecuperarSenhaRoute,
   SejaPrestadorRoute: SejaPrestadorRoute,

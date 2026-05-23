@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import { useRouter } from '@tanstack/react-router';
 import { useAuth } from '@/contexts/AuthContext';
+import type { UserType } from '@/lib/supabase';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
   requireProvider?: boolean;
   requireAdmin?: boolean;
+  allowedUserTypes?: UserType[];
 }
 
 export function ProtectedRoute({ 
   children, 
   requireProvider = false,
-  requireAdmin = false 
+  requireAdmin = false,
+  allowedUserTypes
 }: ProtectedRouteProps) {
   const { user, profile, loading } = useAuth();
   const router = useRouter();
@@ -19,6 +22,18 @@ export function ProtectedRoute({
   useEffect(() => {
     if (!loading && !user) {
       router.navigate({ to: '/entrar' });
+      return;
+    }
+
+    if (!loading && allowedUserTypes && profile?.user_type && !allowedUserTypes.includes(profile.user_type)) {
+      // Redireciona para o dashboard correto baseado no tipo de usuário
+      if (profile.user_type === 'provider') {
+        router.navigate({ to: '/dashboard-parceiro' });
+      } else if (profile.user_type === 'customer') {
+        router.navigate({ to: '/dashboard-cliente' });
+      } else {
+        router.navigate({ to: '/' });
+      }
       return;
     }
 
@@ -31,7 +46,7 @@ export function ProtectedRoute({
       router.navigate({ to: '/' });
       return;
     }
-  }, [user, profile, loading, requireProvider, requireAdmin, router]);
+  }, [user, profile, loading, requireProvider, requireAdmin, allowedUserTypes, router]);
 
   if (loading) {
     return (
@@ -45,6 +60,10 @@ export function ProtectedRoute({
   }
 
   if (!user) {
+    return null;
+  }
+
+  if (allowedUserTypes && profile?.user_type && !allowedUserTypes.includes(profile.user_type)) {
     return null;
   }
 

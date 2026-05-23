@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session, AuthError } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 import type { Profile, UserType } from '@/lib/supabase';
+import { useRouter } from '@tanstack/react-router';
 
 interface AuthContextType {
   user: User | null;
@@ -22,6 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   // Fetch profile when user changes
   useEffect(() => {
@@ -40,6 +42,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         if (error) throw error;
         setProfile(data);
+        
+        // Redirecionar baseado no tipo de usuário após carregar o perfil
+        // Isso é útil quando o usuário já está logado e recarrega a página
+        const currentPath = window.location.pathname;
+        if (currentPath === '/' || currentPath === '/entrar' || currentPath === '/cadastro') {
+          if (data.user_type === 'provider') {
+            router.navigate({ to: '/dashboard-parceiro' });
+          } else if (data.user_type === 'customer') {
+            router.navigate({ to: '/dashboard-cliente' });
+          }
+        }
       } catch (error) {
         console.error('Error fetching profile:', error);
         setProfile(null);
@@ -47,7 +60,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     fetchProfile();
-  }, [user]);
+  }, [user, router]);
 
   useEffect(() => {
     // Get initial session

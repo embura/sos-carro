@@ -37,7 +37,8 @@ function Entrar() {
       if (error) {
         setError(error.message);
       } else {
-        navigate({ to: "/dashboard" });
+        // O redirecionamento será tratado pelo AuthContext ou ProtectedRoute
+        // baseado no tipo de usuário
       }
     } catch (err) {
       setError("Ocorreu um erro inesperado. Tente novamente.");
