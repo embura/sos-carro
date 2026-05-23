@@ -4,19 +4,27 @@ import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DollarSign, Star, CheckCircle, TrendingUp, MessageCircle, MapPin } from "lucide-react";
+import { DollarSign, Star, CheckCircle, TrendingUp, MessageCircle, MapPin, LogOut } from "lucide-react";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { useAuth } from "@/contexts/AuthContext";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard do prestador — SOS Carros" },
-      { name: "description", content: "Painel do prestador: solicitações, ganhos e avaliações." },
+      { title: "Dashboard — SOS Carros" },
+      { name: "description", content: "Painel do usuário: solicitações, ganhos e avaliações." },
     ],
   }),
-  component: Dashboard,
+  component: DashboardPage,
 });
 
-function Dashboard() {
+function DashboardPage() {
+  const { profile, signOut } = useAuth();
+  const isProvider = profile?.user_type === 'provider';
+  
+  const handleSignOut = async () => {
+    await signOut();
+  };
   const stats = [
     { label: "Ganhos do mês", value: "R$ 4.820", icon: DollarSign, color: "text-success" },
     { label: "Serviços concluídos", value: "37", icon: CheckCircle, color: "text-primary" },
@@ -31,17 +39,30 @@ function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1 bg-secondary/20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-            <div>
-              <h1 className="text-3xl font-bold">Olá, Auto Mecânica Silva 👋</h1>
-              <p className="text-muted-foreground">Aqui está o resumo da sua atividade</p>
+    <ProtectedRoute>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 bg-secondary/20">
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+              <div>
+                <h1 className="text-3xl font-bold">Olá, {profile?.full_name || 'Usuário'} 👋</h1>
+                <p className="text-muted-foreground">
+                  {isProvider ? 'Aqui está o resumo da sua atividade' : 'Bem-vindo ao seu painel'}
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                {isProvider && (
+                  <Badge className="bg-success text-success-foreground hover:bg-success">
+                    ● Online — recebendo solicitações
+                  </Badge>
+                )}
+                <Button variant="outline" size="sm" onClick={handleSignOut}>
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Sair
+                </Button>
+              </div>
             </div>
-            <Badge className="bg-success text-success-foreground hover:bg-success">● Online — recebendo solicitações</Badge>
-          </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -121,6 +142,7 @@ function Dashboard() {
         </div>
       </main>
       <Footer />
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }
