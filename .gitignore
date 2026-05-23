@@ -1,1 +1,5 @@
-(docs/FASE5_CONCLUIDA.md, docs/IMPLEMENTACAO_FASE5.md, src/hooks/useNotifications.ts, docs/README.md, src/hooks/useRealtimeBookings.ts)
+(docs/CONFIGURACAO_DATABASE_FASE5.md, docs/QUICK_START_DATABASE.md, docs/RESPOSTA_DATABASE_FASE5.md, docs/README.md, docs/SUPABASE_SCHEMA.sql) - These are all documentation and SQL files, which are source/config files that should not be ignored.
+
+Since the changes only include markdown (.md) and SQL (.sql) files, which are source/documentation files, no files need to be added to .gitignore.
+
+(empty - no output)

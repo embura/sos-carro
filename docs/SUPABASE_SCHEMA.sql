@@ -687,5 +687,16 @@ FROM providers p;
 -- Isso pode ser feito via aplicação também
 
 -- =====================================================
+-- 8. CONFIGURAÇÃO DO REALTIME (FASE 5)
+-- =====================================================
+
+-- Habilitar Realtime nas tabelas bookings e notifications
+-- Execute estas commands no SQL Editor do Supabase ou via psql
+
+-- Adicionar tabelas ao publication do Supabase Realtime
+ALTER PUBLICATION supabase_realtime ADD TABLE bookings;
+ALTER PUBLICATION supabase_realtime ADD TABLE notifications;
+
+-- =====================================================
 -- FIM DO SCHEMA
 -- =====================================================
