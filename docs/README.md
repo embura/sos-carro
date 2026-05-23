@@ -149,11 +149,15 @@ psql -h db.xxx.supabase.co -U postgres -d postgres -f SUPABASE_SCHEMA.sql
 
 | Documento                       | Status      | Última Atualização | Versão |
 | ------------------------------- | ----------- | ------------------ | ------ |
-| DECISOES_ARQUITETURAIS.md       | ✅ Completo | 2025-01-XX         | 1.0.0  |
-| SUPABASE_SCHEMA.sql             | ✅ Completo | 2025-01-XX         | 1.0.0  |
-| SDD_ESPECIFICACOES.md           | ✅ Completo | 2025-01-XX         | 1.0.0  |
-| PLANO_IMPLEMENTACAO_SUPABASE.md | ✅ Completo | 2025-01-XX         | 1.0.0  |
-| TAREFAS_GITHUB_SUMMARY.md       | ✅ Completo | 2025-01-XX         | 1.0.0  |
+| DECISOES_ARQUITETURAIS.md       | ✅ Completo | Jan 2025           | 1.0.0  |
+| SUPABASE_SCHEMA.sql             | ✅ Completo | Jan 2025           | 1.0.0  |
+| SDD_ESPECIFICACOES.md           | ✅ Completo | Jan 2025           | 1.0.0  |
+| PLANO_IMPLEMENTACAO_SUPABASE.md | ✅ Completo | Jan 2025           | 1.0.0  |
+| TAREFAS_GITHUB_SUMMARY.md       | ✅ Completo | Jan 2025           | 1.0.0  |
+| GUIA_CONFIGURACAO_SUPABASE.md   | ✅ Completo | Jan 2025           | 1.0.0  |
+| FASE4_CONCLUIDA.md              | ✅ Completo | Mai 2025           | 1.0.0  |
+| IMPLEMENTACAO_FASE4.md          | ✅ Completo | Mai 2025           | 1.0.0  |
+| SUPABASE_SETUP_SUMMARY.md       | ✅ Completo | Jan 2025           | 1.0.0  |
 
 ---
 
@@ -161,7 +165,7 @@ psql -h db.xxx.supabase.co -U postgres -d postgres -f SUPABASE_SCHEMA.sql
 
 1. **Mudanças arquiteturais**: Atualize `DECISOES_ARQUITETURAIS.md` e incremente versão
 2. **Schema changes**: Adicione migration em `/migrations` e atualize `SUPABASE_SCHEMA.sql`
-3. **Novas features**: Crite seção no `SDD_ESPECIFICACOES.md`
+3. **Novas features**: Crie seção no `SDD_ESPECIFICACOES.md`
 4. **Processos**: Atualize `PLANO_IMPLEMENTACAO_SUPABASE.md` se fluxo mudar
 
 ---
@@ -175,4 +179,4 @@ Consulte a documentação na ordem recomendada ou abra uma issue no repositório
 ---
 
 _Documentação mantida pela equipe SOS Carros_
-_Última revisão: 2025-01-XX_
+_Última revisão: Maio 2025_
