@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DollarSign, Star, CheckCircle, TrendingUp, MessageCircle, MapPin, LogOut, Wrench, Calendar, Clock } from "lucide-react";
+import { DollarSign, Star, CheckCircle, TrendingUp, MessageCircle, MapPin, LogOut, Wrench, Calendar, Clock, Image as ImageIcon } from "lucide-react";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -128,6 +128,9 @@ function DashboardParceiro() {
                   <div className="space-y-2">
                     <Button variant="ghost" className="w-full justify-start" asChild>
                       <Link to="/buscar"><MessageCircle className="h-4 w-4 mr-2" />Mensagens</Link>
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start" asChild>
+                      <Link to="/minhas-fotos"><ImageIcon className="h-4 w-4 mr-2" />Minhas fotos</Link>
                     </Button>
                     <Button variant="ghost" className="w-full justify-start">
                       <Star className="h-4 w-4 mr-2" />Minhas avaliações
