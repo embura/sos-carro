@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Wrench } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import type { UserType } from "@/lib/supabase";
 
 export const Route = createFileRoute("/entrar")({
   head: () => ({
@@ -20,11 +21,23 @@ export const Route = createFileRoute("/entrar")({
 });
 
 function Entrar() {
-  const { signIn } = useAuth();
+  const { signIn, profile, user } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Redirecionar para o dashboard após login bem-sucedido
+  useEffect(() => {
+    if (user && profile) {
+      if (profile.user_type === 'provider') {
+        navigate({ to: '/dashboard-parceiro' });
+      } else if (profile.user_type === 'customer') {
+        navigate({ to: '/dashboard-cliente' });
+      }
+    }
+  }, [user, profile, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,10 +48,8 @@ function Entrar() {
       const { error } = await signIn(email, password);
       if (error) {
         setError(error.message);
-      } else {
-        // O redirecionamento será tratado pelo AuthContext via window.location.href
-        // baseado no tipo de usuário após carregar o perfil
       }
+      // O redirecionamento será tratado pelo useEffect acima quando o perfil for carregado
     } catch (err) {
       setError("Ocorreu um erro inesperado. Tente novamente.");
     } finally {
