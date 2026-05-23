@@ -56,7 +56,7 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
 
 const router = createRouter({
   routeTree,
-  basepath: "/sos-carro",
+  basepath: "/",
   context: {},
   scrollRestoration: true,
   defaultPreloadStaleTime: 0,
