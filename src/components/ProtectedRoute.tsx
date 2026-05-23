@@ -6,21 +6,28 @@ interface ProtectedRouteProps {
   children: React.ReactNode;
   requireProvider?: boolean;
   requireAdmin?: boolean;
+  requireCustomer?: boolean;
 }
 
 export function ProtectedRoute({ 
   children, 
   requireProvider = false,
-  requireAdmin = false 
+  requireAdmin = false,
+  requireCustomer = false
 }: ProtectedRouteProps) {
   const { user, profile, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
+    // Só redireciona se NÃO estiver carregando E não for uma rota protegida específica
+    // Isso evita redirect infinito quando o usuário está navegando entre páginas públicas
     if (!loading && !user) {
-      router.navigate({ to: '/entrar' });
+      // Não redireciona automaticamente - deixa o componente retornar null
+      // O redirecionamento deve ser feito explicitamente pelo componente de login
+      return;
     }
 
+    // Validações de tipo de usuário - apenas redireciona se o usuário estiver logado mas não tiver permissão
     if (!loading && requireProvider && user && profile?.user_type !== 'provider') {
       router.navigate({ to: '/' });
     }
@@ -28,7 +35,11 @@ export function ProtectedRoute({
     if (!loading && requireAdmin && user && profile?.user_type !== 'admin') {
       router.navigate({ to: '/' });
     }
-  }, [user, profile, loading, requireProvider, requireAdmin, router]);
+
+    if (!loading && requireCustomer && user && profile?.user_type !== 'customer') {
+      router.navigate({ to: '/' });
+    }
+  }, [user, profile, loading, requireProvider, requireAdmin, requireCustomer, router]);
 
   if (loading) {
     return (
@@ -38,6 +49,8 @@ export function ProtectedRoute({
     );
   }
 
+  // Se não há usuário e é uma rota protegida, não renderiza nada
+  // O componente de login deve lidar com o redirecionamento se necessário
   if (!user) {
     return null;
   }
@@ -47,6 +60,10 @@ export function ProtectedRoute({
   }
 
   if (requireAdmin && profile?.user_type !== 'admin') {
+    return null;
+  }
+
+  if (requireCustomer && profile?.user_type !== 'customer') {
     return null;
   }
 
