@@ -52,11 +52,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Redirecionar baseado no tipo de usuário após carregar o perfil
         // Isso é útil quando o usuário já está logado e recarrega a página
         const currentPath = window.location.pathname;
-        if (currentPath === '/' || currentPath === '/entrar' || currentPath === '/cadastro') {
+        const isAuthPath = currentPath === '/entrar' || currentPath === '/cadastro';
+        
+        // Apenas redirecionar se estiver em páginas de auth e ainda não tiver redirecionado
+        if (isAuthPath && !session?.expires_at) {
           if (data.user_type === 'provider') {
             window.location.href = '/dashboard-parceiro';
+            return;
           } else if (data.user_type === 'customer') {
             window.location.href = '/dashboard-cliente';
+            return;
           }
         }
       } catch (error) {
@@ -66,7 +71,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     fetchProfile();
-  }, [user]);
+  }, [user, session]);
 
   useEffect(() => {
     // Get initial session
