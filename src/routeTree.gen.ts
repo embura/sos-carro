@@ -15,6 +15,7 @@ import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as DashboardParceiroRouteImport } from './routes/dashboard-parceiro'
 import { Route as DashboardClienteRouteImport } from './routes/dashboard-cliente'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ConfirmarEmailRouteImport } from './routes/confirmar-email'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as BuscarRouteImport } from './routes/buscar'
@@ -51,6 +52,11 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConfirmarEmailRoute = ConfirmarEmailRouteImport.update({
+  id: '/confirmar-email',
+  path: '/confirmar-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/confirmar-email': typeof ConfirmarEmailRoute
   '/dashboard': typeof DashboardRoute
   '/dashboard-cliente': typeof DashboardClienteRoute
   '/dashboard-parceiro': typeof DashboardParceiroRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/confirmar-email': typeof ConfirmarEmailRoute
   '/dashboard': typeof DashboardRoute
   '/dashboard-cliente': typeof DashboardClienteRoute
   '/dashboard-parceiro': typeof DashboardParceiroRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/buscar': typeof BuscarRoute
   '/cadastro': typeof CadastroRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/confirmar-email': typeof ConfirmarEmailRoute
   '/dashboard': typeof DashboardRoute
   '/dashboard-cliente': typeof DashboardClienteRoute
   '/dashboard-parceiro': typeof DashboardParceiroRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/buscar'
     | '/cadastro'
     | '/como-funciona'
+    | '/confirmar-email'
     | '/dashboard'
     | '/dashboard-cliente'
     | '/dashboard-parceiro'
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/buscar'
     | '/cadastro'
     | '/como-funciona'
+    | '/confirmar-email'
     | '/dashboard'
     | '/dashboard-cliente'
     | '/dashboard-parceiro'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/buscar'
     | '/cadastro'
     | '/como-funciona'
+    | '/confirmar-email'
     | '/dashboard'
     | '/dashboard-cliente'
     | '/dashboard-parceiro'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   BuscarRoute: typeof BuscarRoute
   CadastroRoute: typeof CadastroRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
+  ConfirmarEmailRoute: typeof ConfirmarEmailRoute
   DashboardRoute: typeof DashboardRoute
   DashboardClienteRoute: typeof DashboardClienteRoute
   DashboardParceiroRoute: typeof DashboardParceiroRoute
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/confirmar-email': {
+      id: '/confirmar-email'
+      path: '/confirmar-email'
+      fullPath: '/confirmar-email'
+      preLoaderRoute: typeof ConfirmarEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/como-funciona': {
       id: '/como-funciona'
       path: '/como-funciona'
@@ -260,6 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuscarRoute: BuscarRoute,
   CadastroRoute: CadastroRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
+  ConfirmarEmailRoute: ConfirmarEmailRoute,
   DashboardRoute: DashboardRoute,
   DashboardClienteRoute: DashboardClienteRoute,
   DashboardParceiroRoute: DashboardParceiroRoute,

@@ -54,9 +54,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const currentPath = window.location.pathname;
         if (currentPath === '/' || currentPath === '/entrar' || currentPath === '/cadastro') {
           if (data.user_type === 'provider') {
-            window.location.href = '/sos-carro/dashboard-parceiro';
+            window.location.href = '/dashboard-parceiro';
           } else if (data.user_type === 'customer') {
-            window.location.href = '/sos-carro/dashboard-cliente';
+            window.location.href = '/dashboard-cliente';
           }
         }
       } catch (error) {

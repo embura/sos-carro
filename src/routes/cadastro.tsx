@@ -53,7 +53,7 @@ function Cadastro() {
         setError(error.message);
       } else {
         alert("Conta criada com sucesso! Verifique seu e-mail para confirmar o cadastro.");
-        window.location.href = '/sos-carro/entrar';
+        window.location.href = '/entrar';
       }
     } catch (err) {
       setError("Ocorreu um erro inesperado. Tente novamente.");
@@ -73,7 +73,7 @@ function Cadastro() {
         setError(error.message);
       } else {
         alert("Conta de prestador criada! Após confirmação do e-mail, você poderá enviar documentos para validação.");
-        window.location.href = '/sos-carro/entrar';
+        window.location.href = '/entrar';
       }
     } catch (err) {
       setError("Ocorreu um erro inesperado. Tente novamente.");
