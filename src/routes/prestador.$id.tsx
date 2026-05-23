@@ -4,8 +4,9 @@ import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, MapPin, Clock, Shield, MessageCircle, Phone, ArrowLeft } from "lucide-react";
+import { Star, MapPin, Clock, Shield, MessageCircle, Phone, ArrowLeft, ImageIcon } from "lucide-react";
 import { providers, sampleReviews } from "@/data/mock";
+import { PhotoGallery } from "@/components/PhotoGallery";
 
 export const Route = createFileRoute("/prestador/$id")({
   loader: ({ params }) => {
@@ -132,6 +133,20 @@ function Prestador() {
                     </div>
                   ))}
                 </div>
+              </Card>
+
+              {/* Fotos do Trabalho */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-semibold flex items-center gap-2">
+                    <ImageIcon className="w-5 h-5" />
+                    Fotos do Trabalho
+                  </h2>
+                  {p.provider_photos && p.provider_photos.length > 0 && (
+                    <Badge variant="secondary">{p.provider_photos.length}</Badge>
+                  )}
+                </div>
+                <PhotoGallery providerId={p.id} isOwner={false} />
               </Card>
             </div>
 
