@@ -1,1 +1,1 @@
-(docs/FASE4_IMPLEMENTACAO_COMPLETA.md, src/routes/dashboard-parceiro.tsx, src/routes/prestador.$id.tsx)
+Nothing should be ignored in this case, as the changes only include documentation files (.md) which are source/config files and not build artifacts, dependencies, or temporary files.
