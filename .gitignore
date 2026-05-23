@@ -1,18 +1,26 @@
+```
 # Dependencies
 node_modules/
 
 # Build outputs
 dist/
 build/
-coverage/
-htmlcov/
+*.js
+*.ts
+*.tsx
 
-# Environment variables
+# Environment
 .env
 .env.local
-.env.*
+*.env.*
 
-# Python cache
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -21,20 +29,15 @@ __pycache__/
 # Logs
 *.log
 
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
 # Temporary files
 *.tmp
-*.swp
-*~
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# IDE specific
-.vscode/
-.idea/
 ```
-```
-# OS generated files
-.DS_Store
-Thumbs.db
