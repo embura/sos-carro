@@ -24,6 +24,7 @@ build/
 .env.local
 .env.*
 
+supabase/
 # IDE and editor settings
 .vscode/
 .idea/
