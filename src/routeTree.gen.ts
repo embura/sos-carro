@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SejaPrestadorRouteImport } from './routes/seja-prestador'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
+import { Route as MinhasFotosRouteImport } from './routes/minhas-fotos'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as DashboardParceiroRouteImport } from './routes/dashboard-parceiro'
 import { Route as DashboardClienteRouteImport } from './routes/dashboard-cliente'
@@ -30,6 +31,11 @@ const SejaPrestadorRoute = SejaPrestadorRouteImport.update({
 const RecuperarSenhaRoute = RecuperarSenhaRouteImport.update({
   id: '/recuperar-senha',
   path: '/recuperar-senha',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinhasFotosRoute = MinhasFotosRouteImport.update({
+  id: '/minhas-fotos',
+  path: '/minhas-fotos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EntrarRoute = EntrarRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/dashboard-cliente': typeof DashboardClienteRoute
   '/dashboard-parceiro': typeof DashboardParceiroRoute
   '/entrar': typeof EntrarRoute
+  '/minhas-fotos': typeof MinhasFotosRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
   '/prestador/$id': typeof PrestadorIdRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByTo {
   '/dashboard-cliente': typeof DashboardClienteRoute
   '/dashboard-parceiro': typeof DashboardParceiroRoute
   '/entrar': typeof EntrarRoute
+  '/minhas-fotos': typeof MinhasFotosRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
   '/prestador/$id': typeof PrestadorIdRoute
@@ -122,6 +130,7 @@ export interface FileRoutesById {
   '/dashboard-cliente': typeof DashboardClienteRoute
   '/dashboard-parceiro': typeof DashboardParceiroRoute
   '/entrar': typeof EntrarRoute
+  '/minhas-fotos': typeof MinhasFotosRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/seja-prestador': typeof SejaPrestadorRoute
   '/prestador/$id': typeof PrestadorIdRoute
@@ -138,6 +147,7 @@ export interface FileRouteTypes {
     | '/dashboard-cliente'
     | '/dashboard-parceiro'
     | '/entrar'
+    | '/minhas-fotos'
     | '/recuperar-senha'
     | '/seja-prestador'
     | '/prestador/$id'
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/dashboard-cliente'
     | '/dashboard-parceiro'
     | '/entrar'
+    | '/minhas-fotos'
     | '/recuperar-senha'
     | '/seja-prestador'
     | '/prestador/$id'
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/dashboard-cliente'
     | '/dashboard-parceiro'
     | '/entrar'
+    | '/minhas-fotos'
     | '/recuperar-senha'
     | '/seja-prestador'
     | '/prestador/$id'
@@ -181,6 +193,7 @@ export interface RootRouteChildren {
   DashboardClienteRoute: typeof DashboardClienteRoute
   DashboardParceiroRoute: typeof DashboardParceiroRoute
   EntrarRoute: typeof EntrarRoute
+  MinhasFotosRoute: typeof MinhasFotosRoute
   RecuperarSenhaRoute: typeof RecuperarSenhaRoute
   SejaPrestadorRoute: typeof SejaPrestadorRoute
   PrestadorIdRoute: typeof PrestadorIdRoute
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/recuperar-senha'
       fullPath: '/recuperar-senha'
       preLoaderRoute: typeof RecuperarSenhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minhas-fotos': {
+      id: '/minhas-fotos'
+      path: '/minhas-fotos'
+      fullPath: '/minhas-fotos'
+      preLoaderRoute: typeof MinhasFotosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/entrar': {
@@ -285,6 +305,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardClienteRoute: DashboardClienteRoute,
   DashboardParceiroRoute: DashboardParceiroRoute,
   EntrarRoute: EntrarRoute,
+  MinhasFotosRoute: MinhasFotosRoute,
   RecuperarSenhaRoute: RecuperarSenhaRoute,
   SejaPrestadorRoute: SejaPrestadorRoute,
   PrestadorIdRoute: PrestadorIdRoute,
