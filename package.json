@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "validate:supabase": "tsx scripts/validate-supabase.ts"
+    "validate:supabase": "tsx scripts/validate-supabase.ts",
+    "seed:providers": "tsx scripts/seed-providers.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
