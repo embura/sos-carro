@@ -9,7 +9,7 @@ export function useProfile(userId: string) {
         .from('profiles')
         .select('*')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       return data as Profile;
@@ -28,7 +28,7 @@ export function useUpdateProfile() {
         .update(data)
         .eq('id', userId)
         .select()
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       return result;
@@ -70,7 +70,7 @@ export function useUpdateProviderProfile() {
         .update(data)
         .eq('id', providerId)
         .select()
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       return result;
