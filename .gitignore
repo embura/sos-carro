@@ -84,3 +84,6 @@ yarn-error.log*
 # Sensitive files
 config/secrets.*
 credentials.json
+
+# Documentation drafts
+docs/IMPLEMENTACAO_FASE6.md
