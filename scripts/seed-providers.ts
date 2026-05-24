@@ -2,11 +2,6 @@
  * Script para popular o Supabase com dados mock dos prestadores
  * 
  * Este script insere os dados de exemplo no Supabase para validar a busca
- * 
- * Compatibilidade com o schema SUPABASE_SCHEMA.sql:
- * - Tabela: providers
- * - Colunas principais: business_name, category, city, rating, is_active, etc.
- * - ENUM service_category: 'mecanica' | 'eletrica' | 'guincho' | 'pneus' | 'funilaria' | 'vidracaria' | 'chaveiro' | 'lavagem' | 'outros'
  */
 
 import { supabase } from '../src/lib/supabase';
@@ -37,8 +32,6 @@ async function seedProviders() {
     const { data: test, error: testError } = await supabase.from('providers').select('count').limit(1);
     if (testError) {
       console.error('❌ Erro ao conectar:', testError.message);
-      console.error('\n💡 Dica: Verifique se o schema SQL foi executado no Supabase.');
-      console.error('   Arquivo de referência: docs/SUPABASE_SCHEMA.sql\n');
       process.exit(1);
     }
     console.log('✅ Conexão com Supabase estabelecida\n');
@@ -47,13 +40,13 @@ async function seedProviders() {
     process.exit(1);
   }
 
-  // Dados mock dos prestadores - Categorias compatíveis com o ENUM service_category
+  // Dados mock dos prestadores
   const providers: MockProvider[] = [
     {
       id: "1",
       name: "Auto Mecânica Silva",
       category: "Mecânica geral",
-      categoryId: "mecanica", // ✅ Compatível com ENUM
+      categoryId: "mecanica",
       rating: 4.9,
       reviewsCount: 312,
       distanceKm: 1.2,
@@ -69,7 +62,7 @@ async function seedProviders() {
       id: "2",
       name: "Guincho 24h Express",
       category: "Guincho",
-      categoryId: "guincho", // ✅ Compatível com ENUM
+      categoryId: "guincho",
       rating: 4.8,
       reviewsCount: 528,
       distanceKm: 2.5,
@@ -85,7 +78,7 @@ async function seedProviders() {
       id: "3",
       name: "Elétrica Volt Power",
       category: "Elétrica automotiva",
-      categoryId: "eletrica", // ✅ Compatível com ENUM
+      categoryId: "eletrica",
       rating: 4.7,
       reviewsCount: 189,
       distanceKm: 3.1,
@@ -100,7 +93,7 @@ async function seedProviders() {
       id: "4",
       name: "Pneus & Cia",
       category: "Pneus",
-      categoryId: "pneus", // ✅ Compatível com ENUM
+      categoryId: "pneus",
       rating: 4.6,
       reviewsCount: 421,
       distanceKm: 4.8,
@@ -115,7 +108,7 @@ async function seedProviders() {
       id: "5",
       name: "Funilaria Premium",
       category: "Funilaria e pintura",
-      categoryId: "funilaria", // ✅ Compatível com ENUM
+      categoryId: "funilaria",
       rating: 4.9,
       reviewsCount: 156,
       distanceKm: 6.2,
@@ -131,7 +124,7 @@ async function seedProviders() {
       id: "6",
       name: "Chaveiro Auto Key",
       category: "Chaveiro automotivo",
-      categoryId: "chaveiro", // ✅ Compatível com ENUM
+      categoryId: "chaveiro",
       rating: 4.8,
       reviewsCount: 94,
       distanceKm: 5.4,
@@ -145,39 +138,32 @@ async function seedProviders() {
     },
   ];
 
-  console.log(`📦 Inserindo ${providers.length} prestadores...`);
-  console.log('📋 Categorias usadas:', [...new Set(providers.map(p => p.categoryId))].join(', '));
-  console.log('');
+  console.log(`📦 Inserindo ${providers.length} prestadores...\n`);
 
   for (const provider of providers) {
     console.log(`➡️  Inserindo: ${provider.name}`);
 
     // Primeiro, verificar se já existe
-    const { data: existing, error: existingError } = await supabase
+    const { data: existing } = await supabase
       .from('providers')
       .select('id')
       .eq('business_name', provider.name)
       .single();
-
-    if (existingError && !existingError.message.includes('No rows found')) {
-      console.log(`   ⚠️  Erro ao verificar existência: ${existingError.message}`);
-    }
 
     if (existing) {
       console.log(`   ⚠️  Prestador já existe (ID: ${existing.id})`);
       continue;
     }
 
-    // Gerar UUID aleatório para user_id (necessário por causa da foreign key)
-    // No ambiente real, isso seria o ID do usuário autenticado
-    const randomUserId = crypto.randomUUID();
+    // Criar usuário fake para o provider (necessário por causa da foreign key user_id)
+    const fakeUserId = `user-${provider.id}-${Date.now()}`;
     
-    // Dados compatíveis com o schema da tabela providers
+    // Inserir provider diretamente (usando UUID gerado)
     const providerData = {
-      id: crypto.randomUUID(), // UUID único para o provider
+      id: `provider-${provider.id}`,
       business_name: provider.name,
-      category: provider.categoryId, // ENUM: mecanica, eletrica, guincho, pneus, funilaria, vidracaria, chaveiro, lavagem, outros
-      categories_offered: [provider.categoryId], // Array de ENUMs
+      category: provider.categoryId,
+      categories_offered: [provider.categoryId],
       bio: provider.bio,
       address: 'Rua Exemplo, 123',
       city: provider.city,
@@ -198,11 +184,9 @@ async function seedProviders() {
       certifications: [],
       is_verified: true,
       is_active: true,
-      user_id: randomUserId, // Foreign key para profiles(id)
+      // user_id será um UUID válido
+      user_id: crypto.randomUUID(),
     };
-
-    console.log(`   📝 Categoria: ${provider.categoryId}`);
-    console.log(`   🔑 User ID: ${randomUserId.substring(0, 8)}...`);
 
     const { data, error } = await supabase
       .from('providers')
@@ -212,12 +196,6 @@ async function seedProviders() {
 
     if (error) {
       console.error(`   ❌ Erro: ${error.message}`);
-      if (error.message.includes('invalid input value for enum')) {
-        console.error(`   💡 Verifique se o ENUM 'service_category' inclui '${provider.categoryId}'`);
-      }
-      if (error.message.includes('foreign key')) {
-        console.error(`   💡 O user_id precisa existir na tabela profiles ou ser removido da constraint`);
-      }
     } else {
       console.log(`   ✅ Sucesso! ID: ${data.id}`);
     }
@@ -230,4 +208,7 @@ async function seedProviders() {
   console.log('\nPróximos passos:');
   console.log('1. Acesse o painel do Supabase para verificar os dados');
   console.log('2. Teste a busca na aplicação com `npm run dev`');
-  co
+}
+
+// Executar seed
+seedProviders().catch(console.error);
