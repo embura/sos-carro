@@ -1,35 +1,21 @@
+```
 # Dependencies
 node_modules/
 
-# Build artifacts
+# Environment variables
+.env*
+!.env.example
+
+# Build outputs
 dist/
 build/
-*.js
-*.mjs
-*.cjs
-*.ts
-*.mts
-*.cts
-*.jsx
-*.tsx
-*.css
-*.scss
-*.sass
-*.less
-*.html
-*.json
+target/
 
-# Environment variables
-.env
-.env.local
-.env.*
-
-supabase/
-# IDE and editor settings
-.vscode/
-.idea/
-*.swp
-*.swo
+# Cache directories
+.cache/
+.node_cache/
+.npm/
+.yarn/
 
 # Logs
 *.log
@@ -37,54 +23,58 @@ supabase/
 # Temporary files
 *.tmp
 *.temp
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# OS generated files
 .DS_Store
 Thumbs.db
 
-# Python specific
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python related (if applicable)
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.pytest_cache/
-.mypy_cache/
-.venv/
+.Python
+env/
 venv/
+.venv/
 pip-log.txt
-pip-selfcheck.json
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
 
-# Node.js specific
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Bun specific
+.bun/
+bun.lockb
 
-# Compiled binary files
-*.exe
-*.dll
-*.so
-*.dylib
-
-# Archives
-*.zip
-*.tar.gz
-*.tar.bz2
-*.rar
-*.7z
+# TypeScript/JavaScript build
+*.tsbuildinfo
+.next/
+nuxt/dist/
 
 # Database
 *.db
-*.sqlite
-*.sqlite3
+*.db-journal
 
-# Sensitive files
-config/secrets.*
-credentials.json
-
-# Documentation drafts
-docs/IMPLEMENTACAO_FASE6.md
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+```
