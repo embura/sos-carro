@@ -485,15 +485,28 @@ ALTER TABLE provider_photos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
 
 -- 5.1. Políticas para PROFILES
-CREATE POLICY "Users can view their own profile"
+-- Política para usuários autenticados visualizarem qualquer perfil (necessário para home)
+DROP POLICY IF EXISTS "Users can view their own profile" ON profiles;
+CREATE POLICY "Authenticated users can view any profile"
   ON profiles FOR SELECT
-  USING (auth.uid() = id);
+  TO authenticated
+  USING (true);
 
+-- Política para atualização do próprio perfil
+DROP POLICY IF EXISTS "Users can update their own profile" ON profiles;
 CREATE POLICY "Users can update their own profile"
   ON profiles FOR UPDATE
   USING (auth.uid() = id);
 
-CREATE POLICY "Public can view basic provider profiles"
+-- Política para inserção do próprio perfil
+DROP POLICY IF EXISTS "Public can view basic provider profiles" ON profiles;
+CREATE POLICY "Enable insert for authenticated users only"
+  ON profiles FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = id);
+
+-- Política para visualização pública de perfis de prestadores ativos
+CREATE POLICY "Public can view active provider profiles"
   ON profiles FOR SELECT
   USING (user_type = 'provider' AND status = 'active');
 
