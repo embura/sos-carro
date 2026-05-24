@@ -638,10 +638,12 @@ SELECT
   pr.avatar_url,
   pr.phone,
   (
-    SELECT json_agg(json_build_object('url', photo_url, 'caption', caption))
+    SELECT json_agg(
+      json_build_object('url', photo_url, 'caption', caption)
+      ORDER BY is_primary DESC
+    )
     FROM provider_photos
     WHERE provider_id = p.id
-    ORDER BY is_primary DESC
   ) as photos,
   (
     SELECT COUNT(*)
